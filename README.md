@@ -2,6 +2,7 @@
 A serverless function that sends Chatwork message events to Slack. This function uses Chatwork's webhook. If you are not authorized, you need to apply to the administrator.
 
 ## Example Messages
+![image](https://user-images.githubusercontent.com/8668892/125169475-45382580-e1e5-11eb-948b-82ae1bf4a5f6.png)
 
 ## Requirement
 - Python:3.8
