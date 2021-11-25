@@ -51,28 +51,13 @@ def token_check(request_signature, request_body):
 
 def send_to_slack(request_json_body):
 
+    url = "https://www.chatwork.com/#!rid" + str(request_json_body['webhook_event']['room_id']) + "-" + str(request_json_body['webhook_event']['message_id'])
+
     slack_message = {
         'username': 'Chatwork Notification',
         'channel': os.environ['SLACK_CHANNEL_ID'],
         'icon_emoji': 'chatwork',
-        'attachments': [
-            {
-                'color': 'good',
-                'pretext': 'Chatworkに新規メッセージがあります',
-                'fields': [
-                    {
-                        'title': 'room_id',
-                        'value': request_json_body['webhook_event']['room_id'],
-                        'short': True
-                    },
-                    {
-                        'title': 'message_url',
-                        'value': "https://www.chatwork.com/#!rid" + str(request_json_body['webhook_event']['room_id']) + "-" + str(request_json_body['webhook_event']['message_id']),
-                        'short': False
-                    }
-                 ]
-            }
-        ]
+        'text': "*There is a new message. Room ID: <" + url + "|" + str(request_json_body['webhook_event']['room_id']) + ">*"
     }
     send(slack_message)
 
